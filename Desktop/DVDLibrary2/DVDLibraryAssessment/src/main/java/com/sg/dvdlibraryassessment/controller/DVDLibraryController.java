@@ -5,9 +5,13 @@
  */
 package com.sg.dvdlibraryassessment.controller;
 
+import com.sg.dvdlibraryassessment.dao.DVDLibraryDao;
+import com.sg.dvdlibraryassessment.dao.DVDLibraryDaoFileImpl;
+import com.sg.dvdlibraryassessment.dto.DVD;
 import com.sg.dvdlibraryassessment.ui.DVDLibraryView;
 import com.sg.dvdlibraryassessment.ui.UserIO;
 import com.sg.dvdlibraryassessment.ui.UserIOConsoleImpl;
+import java.util.List;
 
 /**
  *
@@ -17,6 +21,25 @@ public class DVDLibraryController {
     
     private DVDLibraryView view = new DVDLibraryView();
     private UserIO io = new UserIOConsoleImpl();
+    private DVDLibraryDao dao = new DVDLibraryDaoFileImpl();
+    
+    
+    private int getMenuSelection() {
+        return view.printMenuAndGetSelection();
+    }
+    
+    private void addDVD() {
+        view.displayAddDVDBanner();
+        DVD newDVD = view.getNewDVDInfo();
+        dao.addDVD(newDVD.getDVDID(), newDVD);
+        view.displayDVDAddedSuccessBanner();
+    }
+    
+    private void listDVDs(){
+        view.displayDVDListBanner();
+        List<DVD> dvdList = dao.getAllDVDs();
+        view.displayDVDList(dvdList);
+    }
     
     public void run() {
         boolean keepGoing = true;
@@ -28,7 +51,7 @@ public class DVDLibraryController {
             
             switch (menuSelection){
                 case 1: 
-                    io.print("DISPLAY DVD LIST");
+                    listDVDs();
                     break;
                 case 2: 
                     io.print("VIEW DVD INFORMATION");
@@ -37,7 +60,7 @@ public class DVDLibraryController {
                     io.print("FIND DVDS");
                     break;
                 case 4:
-                    io.print("ADD DVDS");
+                    addDVD();
                     break;
                 case 5:
                     io.print("REMOVE DVDS");
@@ -55,10 +78,7 @@ public class DVDLibraryController {
         io.print("GOOD BYE");
     }
     
-    private int getMenuSelection() {
-        return view.printMenuAndGetSelection();
-    }
-    
+  
     public void edit(){
         boolean keepEditing = true;
         int editMenuSelection = 0;

@@ -5,6 +5,9 @@
  */
 package com.sg.dvdlibraryassessment.ui;
 
+import com.sg.dvdlibraryassessment.dto.DVD;
+import java.util.List;
+
 /**
  *
  * @author Teresa
@@ -24,6 +27,51 @@ public class DVDLibraryView {
             io.print("7. Exit");
             
             return io.readInt("Please select from the above choices.", 1, 7);
+    }
+    
+    
+    public void displayAddDVDBanner() {
+        io.print("=== Add DVD ===");
+    }
+    public DVD getNewDVDInfo() {
+        String dvdID = io.readString("Please enter DVD ID");
+        String title = io.readString("Please enter a title.");
+        String releaseDate = io.readString("Please enter a release date.");
+        String mpaaRating = io.readString("Please enter a MPAA rating.");
+        String directorsName = io.readString("Please enter the director's name.");
+        String studioName = io.readString("Please enter the studio's name.");
+        String userRating = io.readString("Please enter your comments.");//getUserRating();
+        
+        DVD currentDVD = new DVD(dvdID); //id instead
+        currentDVD.setTitle(title);
+        currentDVD.setReleaseDate(releaseDate);
+        currentDVD.setMpaaRating(mpaaRating);
+        currentDVD.setDirectorsName(directorsName);
+        currentDVD.setStudioName(studioName);
+        currentDVD.setUserRating(userRating);
+        return currentDVD; 
+    }
+    public void displayDVDAddedSuccessBanner(){
+        io.readString("DVD successfully added. Please hit enter to continue");
+    }
+    
+    
+    public void displayDVDListBanner() {
+        io.print("=== Display DVD List ===");
+    }
+    public void displayDVDList(List<DVD> dvdList) {
+        for (DVD currentDVD : dvdList) {
+            String dvdInfo = String.format("#%s: %s : %s : %s : %s : %s : %s",
+                    currentDVD.getDVDID(),
+                    currentDVD.getTitle(),
+                    currentDVD.getReleaseDate(),
+                    currentDVD.getMpaaRating(),
+                    currentDVD.getDirectorsName(),
+                    currentDVD.getStudioName(),
+                    currentDVD.getUserRating());
+            io.print(dvdInfo);
+        }
+        io.readString("Please hit enter to continue.");//getHitEnter();
     }
     
     public int printEditMenuAndGetSelection() {
