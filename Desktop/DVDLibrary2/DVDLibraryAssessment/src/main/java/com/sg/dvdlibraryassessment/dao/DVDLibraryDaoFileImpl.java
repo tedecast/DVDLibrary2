@@ -26,7 +26,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
 
     @Override
     public DVD getDVD(String dvdID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dvds.get(dvdID);
     }
 
     @Override
@@ -37,7 +37,8 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
 
     @Override
     public DVD removeDVD(String dvdID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DVD removedDVD = dvds.remove(dvdID);
+        return removedDVD;
     }
 
     @Override

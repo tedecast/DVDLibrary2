@@ -28,6 +28,18 @@ public class DVDLibraryController {
         return view.printMenuAndGetSelection();
     }
     
+    private void listDVDs(){
+        view.displayDVDListBanner();
+        List<DVD> dvdList = dao.getAllDVDs();
+        view.displayDVDList(dvdList);
+    }
+    
+    private void viewDVDInfo(){
+        view.displayDVDInfoBanner();
+        String dvdID = view.getDVDIDChoice();
+        DVD dvd = dao.getDVD(dvdID);
+        view.displayDVDInfo(dvd);
+    }
     private void addDVD() {
         view.displayAddDVDBanner();
         DVD newDVD = view.getNewDVDInfo();
@@ -35,11 +47,7 @@ public class DVDLibraryController {
         view.displayDVDAddedSuccessBanner();
     }
     
-    private void listDVDs(){
-        view.displayDVDListBanner();
-        List<DVD> dvdList = dao.getAllDVDs();
-        view.displayDVDList(dvdList);
-    }
+   
     
     public void run() {
         boolean keepGoing = true;
@@ -54,7 +62,7 @@ public class DVDLibraryController {
                     listDVDs();
                     break;
                 case 2: 
-                    io.print("VIEW DVD INFORMATION");
+                    viewDVDInfo();
                     break;
                 case 3:
                     io.print("FIND DVDS");

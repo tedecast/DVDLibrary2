@@ -29,6 +29,54 @@ public class DVDLibraryView {
             return io.readInt("Please select from the above choices.", 1, 7);
     }
     
+    public void getHitEnter() {
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public void displayDVDListBanner() {
+        io.print("=== Display DVD List ===");
+    }
+    public void displayDVDList(List<DVD> dvdList) {
+        for (DVD currentDVD : dvdList) {
+            String dvdInfo = String.format("#%s: %s : %s : %s : %s : %s : %s",
+                    currentDVD.getDVDID(),
+                    currentDVD.getTitle(),
+                    currentDVD.getReleaseDate(),
+                    currentDVD.getMpaaRating(),
+                    currentDVD.getDirectorsName(),
+                    currentDVD.getStudioName(),
+                    currentDVD.getUserRating());
+            io.print(dvdInfo);
+        }
+        getHitEnter();
+    }
+
+      
+    public void displayDVDInfoBanner() {
+        io.print("=== Display DVD Information ===");
+    }
+    public String getDVDIDChoice() { 
+        return io.readString("Please enter the DVD ID.");
+    }
+    public void displayDVDInfo(DVD dvd) {
+        if (dvd != null) {
+            io.print(dvd.getDVDID());
+            if (dvd != null) {
+                io.print("ID: " + dvd.getDVDID());
+                io.print("Title: " + dvd.getTitle());
+                io.print("Release Date: " + dvd.getReleaseDate());
+                io.print("MPAA Rating: " + dvd.getMpaaRating());
+                io.print("Director: " + dvd.getDirectorsName());
+                io.print("Studio: " + dvd.getStudioName());
+                io.print("Rating: " + dvd.getUserRating());
+                io.print("");
+            } else {
+                io.print("No such DVD exists."); //displayDoesNotExist();
+            }
+            getHitEnter();
+        }
+    }
+    
     
     public void displayAddDVDBanner() {
         io.print("=== Add DVD ===");
@@ -55,25 +103,7 @@ public class DVDLibraryView {
         io.readString("DVD successfully added. Please hit enter to continue");
     }
     
-    
-    public void displayDVDListBanner() {
-        io.print("=== Display DVD List ===");
-    }
-    public void displayDVDList(List<DVD> dvdList) {
-        for (DVD currentDVD : dvdList) {
-            String dvdInfo = String.format("#%s: %s : %s : %s : %s : %s : %s",
-                    currentDVD.getDVDID(),
-                    currentDVD.getTitle(),
-                    currentDVD.getReleaseDate(),
-                    currentDVD.getMpaaRating(),
-                    currentDVD.getDirectorsName(),
-                    currentDVD.getStudioName(),
-                    currentDVD.getUserRating());
-            io.print(dvdInfo);
-        }
-        io.readString("Please hit enter to continue.");//getHitEnter();
-    }
-    
+  
     public int printEditMenuAndGetSelection() {
         io.print("=== Edit DVD ===");
         io.print("1. Title");
