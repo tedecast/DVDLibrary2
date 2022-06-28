@@ -25,6 +25,18 @@ public interface DVDLibraryDao {
     DVD editDVD(String dvdID, DVD dvd, String prevDVDTitle);
     
     
+    DVD changeTitle(String dvdID, String title); //throws DVDLibraryDaoException;
+            
+    DVD changeReleaseDate(String dvdID, String releaseDate); //throws DVDLibraryDaoException;
+    
+    DVD changeMpaaRating(String dvdID, String mpaaRating); //throws DVDLibraryDaoException;
+    
+    DVD changeDirectorName(String dvdID, String directorName); //throws DVDLibraryDaoException;
+    
+    DVD changeUserRating(String dvdID, String userRating); //throws DVDLibraryDaoException;
+    
+    DVD changeStudioName(String dvdID, String studioName); //throws DVDLibraryDaoException;
+    
 }
 // private String title;
 //    private String releaseDate;

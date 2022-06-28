@@ -88,7 +88,7 @@ public class DVDLibraryController {
                     removeDVD();
                     break;
                 case 6:
-                    io.print("EDIT DVDS");
+                    editDVD();
                     break;
                 case 7:
                     keepGoing = false;
@@ -100,42 +100,83 @@ public class DVDLibraryController {
         exitMessage();
     }
     
+    private void editTitle(String dvdID){
+        String newTitle = view.getTitle();
+        dao.changeTitle(dvdID, newTitle);
+//        view.displayEditResult();
+   }
+    
+    private void editReleaseDate(String dvdID){
+        String newReleaseDate = view.getReleaseDate();
+        dao.changeReleaseDate(dvdID, newReleaseDate);
+//        view.displayKeepEditingBanner();
+    }
+    private void editMpaaRating(String dvdID) {
+        String newMpaaRating = view.getMpaaRating();
+        dao.changeMpaaRating(dvdID, newMpaaRating);
+//        view.displayKeepEditingBanner();
+    }
+    private void editDirectorsName(String dvdID) {
+        String newDirectorName = view.getDirectorName();
+        dao.changeDirectorName(dvdID, newDirectorName);
+//        view.displayKeepEditingBanner();
+    }
+    private void editUserRating(String dvdID) {
+        String newUserRating = view.getUserRating();
+        dao.changeUserRating(dvdID, newUserRating);
+//        view.displayKeepEditingBanner();
+    }
+    private void editStudioName(String dvdID) {
+        String newStudioName = view.getStudioName();
+        dao.changeStudioName(dvdID, newStudioName);
+//        view.displayKeepEditingBanner();
+    }
+    
   
-    public void edit(){
+    public void editDVD(){
+        String dvdID = view.getDVDIDChoice();
+        DVD dvdEdit = dao.getDVD(dvdID);
         boolean keepEditing = true;
         int editMenuSelection = 0;
         while(keepEditing){
             
             editMenuSelection = getEditMenuSelection();
-            
-            switch(editMenuSelection){
-                case 1: 
-                    io.print("EDIT TITLE");
-                    break;
-                case 2:
-                    io.print("EDIT RELEASE DATE");
-                    break;
-                case 3:
-                    io.print("EDIT MPAA RATING");
-                    break;
-                case 4:
-                    io.print("EDIT DIRECTOR");
-                    break;
-                case 5:
-                    io.print("EDIT STUDIO");
-                    break;
-                case 6:
-                    io.print("EDIT COMMENTS");
-                    break;
-                case 7:
-                    io.print("EDIT ALL");
-                    break;
-                default:
-                    io.print("UNKNOWN COMMAND");
-                            
+            if(dvdEdit != null){
+                view.getDoesNotExist();
+                }else{   
+                switch(editMenuSelection){
+                    case 1: 
+                        editTitle(dvdID);
+                        break;
+                    case 2:
+                        editReleaseDate(dvdID);
+                        break;
+                    case 3:
+                        editMpaaRating(dvdID);
+                        break;
+                    case 4:
+                        editDirectorsName(dvdID);
+                        break;
+                    case 5:
+                        editStudioName(dvdID);
+                        break;
+                    case 6:
+                        editUserRating(dvdID);
+                        break;
+                    case 7:
+                        editTitle(dvdID);
+                        editReleaseDate(dvdID);
+                        editMpaaRating(dvdID);
+                        editDirectorsName(dvdID);
+                        editStudioName(dvdID);
+                        editUserRating(dvdID);
+                        break;
+                    default:
+                        unknownCommand();
+                }
             }
+            io.print("BACK TO MAIN MENU");
         }
-        io.print("BACK TO MAIN MENU");
     }
     private int getEditMenuSelection(){
         return view.printEditMenuAndGetSelection();

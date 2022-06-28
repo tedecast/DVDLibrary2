@@ -81,6 +81,29 @@ public class DVDLibraryView {
         }
     }
     
+    public String getTitle() {
+        return io.readString("Please enter a DVD title.");
+    }
+
+    public String getReleaseDate() {
+        return io.readString("Please enter a DVD release date.");
+    }
+
+    public String getMpaaRating() {
+        return io.readString("Please enter the MPAA rating.");
+    }
+
+    public String getDirectorName() {
+        return io.readString("Please enter the director's name.");
+    }
+
+    public String getStudioName() {
+        return io.readString("Please enter the studio.");
+    }
+
+    public String getUserRating() {
+        return io.readString("Please enter your comments.");
+    }
     
     public void displayAddDVDBanner() {
         io.print("=== Add DVD ===");

@@ -46,4 +46,60 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    
+    @Override
+    public DVD changeTitle(String dvdID, String title) {
+        //loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setTitle(title);
+        //writeLibrary();
+        return dvdToEdit;
+    }
+    
+    @Override
+    public DVD changeReleaseDate(String dvdID, String releaseDate) {
+        //loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setReleaseDate(releaseDate);
+        //writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeMpaaRating(String dvdID, String mpaaRating) {
+       // loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setMpaaRating(mpaaRating);
+       // writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeDirectorName(String dvdID, String directorName) {
+        //loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setDirectorsName(directorName);
+        //writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeUserRating(String dvdID, String userRating) {
+       //loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setUserRating(userRating);
+        //writeLibrary();
+        return dvdToEdit;
+    }
+
+    @Override
+    public DVD changeStudioName(String dvdID, String studioName)  {
+        //loadLibrary();
+        DVD dvdToEdit = dvds.get(dvdID);
+        dvdToEdit.setStudioName(studioName);
+        //writeLibrary();
+        return dvdToEdit;
+    }
+    
 }
