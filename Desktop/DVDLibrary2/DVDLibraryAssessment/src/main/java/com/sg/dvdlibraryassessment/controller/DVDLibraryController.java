@@ -40,6 +40,7 @@ public class DVDLibraryController {
         DVD dvd = dao.getDVD(dvdID);
         view.displayDVDInfo(dvd);
     }
+    
     private void addDVD() {
         view.displayAddDVDBanner();
         DVD newDVD = view.getNewDVDInfo();
@@ -47,7 +48,20 @@ public class DVDLibraryController {
         view.displayDVDAddedSuccessBanner();
     }
     
+    private void removeDVD() {
+       view.displayRemoveDVDBanner();
+       String dvdID = view.getDVDIDChoice();
+       DVD removedDVD = dao.removeDVD(dvdID);
+       view.displayRemoveResult(removedDVD);
+    }
    
+    private void unknownCommand() {
+        view.displayUnknownCommandBanner();
+    }
+
+    private void exitMessage() {
+        view.displayExitBanner();
+    }
     
     public void run() {
         boolean keepGoing = true;
@@ -71,7 +85,7 @@ public class DVDLibraryController {
                     addDVD();
                     break;
                 case 5:
-                    io.print("REMOVE DVDS");
+                    removeDVD();
                     break;
                 case 6:
                     io.print("EDIT DVDS");
@@ -80,10 +94,10 @@ public class DVDLibraryController {
                     keepGoing = false;
                     break;
                 default:
-                    io.print("UNKNOWN COMMAND");  
+                    unknownCommand();
             }
         }
-        io.print("GOOD BYE");
+        exitMessage();
     }
     
   

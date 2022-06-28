@@ -32,6 +32,10 @@ public class DVDLibraryView {
     public void getHitEnter() {
         io.readString("Please hit enter to continue.");
     }
+    public void getDoesNotExist() {
+        io.print("No such DVD exists.");
+    }
+    
     
     public void displayDVDListBanner() {
         io.print("=== Display DVD List ===");
@@ -99,8 +103,21 @@ public class DVDLibraryView {
         currentDVD.setUserRating(userRating);
         return currentDVD; 
     }
-    public void displayDVDAddedSuccessBanner(){
-        io.readString("DVD successfully added. Please hit enter to continue");
+    public void displayDVDAddedSuccessBanner() {
+        io.readString("DVD successfully added. Please hit enter to continue.");
+    }
+    
+    
+    public void displayRemoveDVDBanner() {
+        io.print("=== Remove DVD ===");
+    }
+    public void displayRemoveResult(DVD dvdRecord) {
+        if(dvdRecord != null){
+            io.print("DVD successfully removed.");
+        }else{
+            getDoesNotExist();
+        }
+        getHitEnter();
     }
     
   
@@ -117,4 +134,13 @@ public class DVDLibraryView {
             
         return io.readInt("Please select from the above choices.", 1, 8);
     }
+    
+    public void displayExitBanner() {
+        io.print("Good Bye!!!");
+    }
+    
+    public void displayUnknownCommandBanner(){
+        io.print("Unknown Command!!!");
+    }
+    
 }
