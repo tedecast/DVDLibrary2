@@ -5,10 +5,16 @@
  */
 package com.sg.dvdlibraryassessment;
 
+import com.sg.dvdlibraryassessment.controller.DVDLibraryController;
+
 /**
  *
  * @author Teresa
  */
 public class App {
     
+    public static void main(String[] args) {
+        DVDLibraryController controller = new DVDLibraryController();
+        controller.run();
+    }
 }

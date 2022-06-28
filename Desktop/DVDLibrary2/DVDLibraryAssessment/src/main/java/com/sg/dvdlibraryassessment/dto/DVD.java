@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.dvdlibraryassessment.dto.ui;
+package com.sg.dvdlibraryassessment.dto;
 
 /**
  *
  * @author Teresa
  */
-public class UserIOConsoleImpl {
+public class DVD {
     
 }
