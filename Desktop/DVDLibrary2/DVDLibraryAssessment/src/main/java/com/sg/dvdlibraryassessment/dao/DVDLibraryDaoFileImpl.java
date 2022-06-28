@@ -6,10 +6,17 @@
 package com.sg.dvdlibraryassessment.dao;
 
 import com.sg.dvdlibraryassessment.dto.DVD;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
@@ -102,4 +109,77 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         return dvdToEdit;
     }
     
+    
+    public static final String LIBRARY_Fule = "library.txt";
+    public static final String DELIMITER = "::";
+    
+    private DVD unmarshallDVD(String dvdAsText){
+        String[] dvdTokens = dvdAsText.split(DELIMITER);
+        String dvdID = dvdTokens[0];
+        
+        DVD dvdFromFile = new DVD(dvdID);
+        
+        dvdFromFile.setTitle(dvdTokens[1]);
+        dvdFromFile.setReleaseDate(dvdTokens[2]);
+        dvdFromFile.setMpaaRating(dvdTokens[3]);
+        dvdFromFile.setDirectorsName(dvdTokens[4]);
+        dvdFromFile.setStudioName(dvdTokens[5]);
+        dvdFromFile.setUserRating(dvdTokens[5]);
+        
+        return dvdFromFile;
+    }
+    
+//  private void loadLibrary() throws DVDLibraryDaoException {
+//        Scanner scanner;
+//        
+//        try {
+//            scanner = new Scanner(
+//            new BufferedReader(
+//                new FileReader(LIBRARY_FILE)));
+//        } catch (FileNotFoundException e) {
+//            throw new DVDLibraryDaoException(
+//                "-_- Could not load library data into memory.", e);
+//        }
+//        String currentLine;
+//        DVD currentDVD;
+//        
+//        while(scanner.hasNextLine()){
+//            currentLine = scanner.nextLine();
+//            currentDVD = unmarshallDVD(currentLine);
+//            
+//            dvds.put(currentDVD.getTitle(), currentDVD);
+//        }
+//        scanner.close();
+//    }
+//    
+//    private String marshallDVD(DVD aDVD){
+//        String dvdAsText = aDVD.getTitle() + DELIMITER;
+//        
+//        dvdAsText += aDVD.getReleaseDate() + DELIMITER;
+//        dvdAsText += aDVD.getMpaaRating() + DELIMITER;
+//        dvdAsText += aDVD.getDirectorsName() + DELIMITER;
+//        dvdAsText += aDVD.getStudioName() + DELIMITER;
+//        dvdAsText += aDVD.getUserRating() + DELIMITER;
+//        
+//        return dvdAsText;
+//    }
+//    
+//    private void writeLibrary() throws DVDLibraryDaoException {
+//        PrintWriter out;
+//        
+//        try {
+//            out = new PrintWriter(new FileWriter(LIBRARY_FILE));
+//        } catch (IOException e){
+//            throw new DVDLibraryDaoException(
+//                "Could not save DVD data.", e);   
+//        }
+//        String dvdAsText;
+//        List<DVD> dvdList = this.getAllDVDs();
+//        for (DVD currentDVD : dvdList) {
+//            dvdAsText = marshallDVD(currentDVD);
+//            out.println(dvdAsText);
+//            out.flush();
+//        }
+//        out.close();
+//    }
 }

@@ -19,10 +19,14 @@ import java.util.List;
  */
 public class DVDLibraryController {
     
-    private DVDLibraryView view = new DVDLibraryView();
+    private DVDLibraryView view;
     private UserIO io = new UserIOConsoleImpl();
-    private DVDLibraryDao dao = new DVDLibraryDaoFileImpl();
+    private DVDLibraryDao dao;
     
+    public DVDLibraryController(DVDLibraryDao dao, DVDLibraryView view){
+        this.dao = dao;
+        this.view = view;
+    }
     
     private int getMenuSelection() {
         return view.printMenuAndGetSelection();

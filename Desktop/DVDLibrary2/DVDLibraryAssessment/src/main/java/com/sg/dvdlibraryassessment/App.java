@@ -6,6 +6,11 @@
 package com.sg.dvdlibraryassessment;
 
 import com.sg.dvdlibraryassessment.controller.DVDLibraryController;
+import com.sg.dvdlibraryassessment.dao.DVDLibraryDao;
+import com.sg.dvdlibraryassessment.dao.DVDLibraryDaoFileImpl;
+import com.sg.dvdlibraryassessment.ui.DVDLibraryView;
+import com.sg.dvdlibraryassessment.ui.UserIO;
+import com.sg.dvdlibraryassessment.ui.UserIOConsoleImpl;
 
 /**
  *
@@ -14,7 +19,10 @@ import com.sg.dvdlibraryassessment.controller.DVDLibraryController;
 public class App {
     
     public static void main(String[] args) {
-        DVDLibraryController controller = new DVDLibraryController();
+        UserIO myIO = new UserIOConsoleImpl();
+        DVDLibraryView myView = new DVDLibraryView(myIO);
+        DVDLibraryDao myDao = new DVDLibraryDaoFileImpl();
+        DVDLibraryController controller = new DVDLibraryController(myDao, myView);
         controller.run();
     }
 }

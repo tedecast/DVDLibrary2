@@ -14,7 +14,11 @@ import java.util.List;
  */
 public class DVDLibraryView {
     
-    private UserIO io = new UserIOConsoleImpl();
+    private UserIO io;
+    
+    public DVDLibraryView(UserIO io){
+        this.io = io;
+    }
     
     public int printMenuAndGetSelection() {
             io.print("Main Menu");
